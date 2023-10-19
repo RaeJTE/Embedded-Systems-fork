@@ -7,18 +7,18 @@ DigitalOut greenLED(PC_6,0);
 
 int main()
 {
-    int grade=-1, hits=0;
+    int grade=1, hits=0;
 
     printf("\n\nPress Return to Start\n\n");
 
-    while (hits < 1) {
+    while ((hits < 1) || (grade>100) || (grade<0)) {
         //Clear out the serial port (keyboard)
         flushInputBuffer();
         //Prompt user
         printf("\nEnter grade (0..100)\n");
         //Read response
         hits = scanf("%d", &grade);
-    }
+        }
 
     //Write results
     printf("scanf found %d hits\n",hits);

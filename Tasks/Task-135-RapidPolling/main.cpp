@@ -14,6 +14,8 @@ DigitalOut greenLED(TRAF_GRN1_PIN);     //Green Traffic 1
 //Dual Digit 7-segment Display
 LatchedLED disp(LatchedLED::SEVEN_SEG);
 
+Timer tmr;
+
 int main()
 {
     volatile int count = 0;
@@ -83,9 +85,15 @@ int main()
             //Update display
             disp = count;               
         }
+            if (btnA_curr ==1 && btnB_curr == 1){
+                count = 0;
+            }
         
         // Slow it down a bit (and debounce the switches)
-        wait_us(250000);  
+        tmr.reset();
+        tmr.start();
+        while (tmr.elapsed_time() < 250ms);
+        tmr.stop();  
     }
 }
 

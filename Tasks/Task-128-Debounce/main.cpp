@@ -18,6 +18,10 @@ int main()
 
         //Wait for release
         while (ButtonA==1) { };
+
+        redLED = 0;
     }
 }
 
+
+//Surprising lack of switch de-bounce, but the concept is understood and will be planned around in the future under the understanding that this lack is not something that can be relied upon.

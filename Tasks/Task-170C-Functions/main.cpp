@@ -18,31 +18,52 @@ int main()
 
     led_init(0x00, true);
 
-    //Update the red
-    setLatch(0xFF,'r');
-
-    //Update the green
-    setLatch(0b10101010, 'g');
-
-    //Update the blue
-    setLatch(0b11001100, 'b');
+    int array [3][10] = { //array is randomised, but remains the same while the code is running.
+        rand()%255, rand()%255, rand()%255,
+        rand()%255, rand()%255, rand()%255,
+        rand()%255, rand()%255, rand()%255,
+        rand()%255, rand()%255, rand()%255,
+        rand()%255, rand()%255, rand()%255,
+        rand()%255, rand()%255, rand()%255,
+        rand()%255, rand()%255, rand()%255,
+        rand()%255, rand()%255, rand()%255,
+        rand()%255, rand()%255, rand()%255,
+        rand()%255, rand()%255, rand()%255
+    };
 
 
     while(true) {
-        //Get delay value
-        int delay_ms = getDelayMS();
 
-        //Enable all the LED BAR Latch Outputs
-        LED_BAR_OE = 0;
+        for (int n = 0; n < 10; n++) {
+            setLatch(array[0][n], 'r');
+            setLatch(array[1][n], 'g');
+            setLatch(array[2][n], 'b');
 
-        //Wait
-        wait_us(delay_ms*1000);
+            //Get delay value
+            int delay_ms = getDelayMS();
 
-        //Disable the latch outputs
-        LED_BAR_OE = 1;
+            //Enable all the LED BAR Latch Outputs
+            LED_BAR_OE = 0;
 
-        //Wait
-        wait_us(delay_ms*1000);            
+            //Wait
+            wait_us(delay_ms*1000);
+
+            //Disable the latch outputs
+            LED_BAR_OE = 1;
+
+            //Wait
+            wait_us(delay_ms*1000);    
+        }
+
+/*        //Update the red
+        setLatch(rand()%255,'r');
+
+        //Update the green
+        setLatch(rand()%255, 'g');
+
+        //Update the blue
+        setLatch(rand()%255, 'b'); */
+        
     }
 
 }

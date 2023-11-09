@@ -14,6 +14,8 @@ DigitalOut dispBackLight(LCD_BKL_PIN,1);
 void setLatch(uint8_t dat, char col);
 void led_init(uint8_t dat, bool enabled);
 int getDelayMS();
+int delay(double alpha);
+
 
 uint8_t pattern_red[] =  {0,   1,  2,  4,  8,  16, 32, 64, 128,  0xFF};
 uint8_t pattern_grn[] =  {0,   3,  6,  12, 24, 48, 96, 192, 128, 0xFF};
@@ -23,6 +25,8 @@ uint8_t idx = 0;
 int main()
 {
     printf("Functions demo\n");
+
+    int delay_ms = delay(0.05);
 
     led_init(0x00, true);
 
@@ -35,18 +39,11 @@ int main()
     //Update the blue
     setLatch(0, 'b');
 
-    //Mean pot value
-    double meanPotValue = (double)getDelayMS();
-
 
     while(true) {
         
         //Get average delay value
-        for (unsigned int n=0; n<32; n++) {
-            int potValue = getDelayMS();                    //Get raw value (with noise)
-            meanPotValue = 0.95*meanPotValue + 0.05*potValue; //Handy forumula!
-        }
-        int delay_ms = (int)meanPotValue;               //Cast to integer
+                       //Cast to integer
 
         //Update display
         disp.cls();
@@ -146,5 +143,13 @@ int getDelayMS()
     return delay;
 }
 
-
+int delay(double alpha) {
+    double meanPotValue = (double)getDelayMS();
+    for (unsigned int n=0; n<32; n++) {
+            int potValue = getDelayMS();                    //Get raw value (with noise)
+            meanPotValue = alpha*meanPotValue + (1-alpha)*potValue; //Handy forumula!
+        }
+    int delay_ms = (int)meanPotValue;
+    return meanPotValue;
+} 
 

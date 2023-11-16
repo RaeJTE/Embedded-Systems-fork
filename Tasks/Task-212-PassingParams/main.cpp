@@ -21,11 +21,15 @@ int main() {
     //Create instance of a complex number
     ComplexNumber_C p = {2.0, 3.0};
     ComplexNumber_C q = {1.0, 1.0};
-    complexDisplay("p", p);
-    complexDisplay("q", q);
+    complexDisp("p", p);
+    complexDisp("q", q);
  
     ComplexNumber_C sum = complexAdd(p, q);
-    complexDisplay("p+q", sum);
+    complexDisp("p+q", sum);
+
+    complexNegateInplace(p);
+    pntrComplexNegateInplace(&q);
+    printf("(%f + j%f) / (%f + j%f) = %f + j%f \n", p.real, p.imag, q.real, q.imag, complexDiv(p, q).real,  complexDiv(p , q).imag);
 
     
     while (true) {

@@ -1,9 +1,6 @@
 #include "mbed.h"
+#include "ComplexMaths.hpp"
 
-typedef struct {
-  double real;
-  double imag;
-} ComplexNumber_C;
 
 ComplexNumber_C complexAdd(const ComplexNumber_C a, const ComplexNumber_C b) {
     ComplexNumber_C y = a;

@@ -6,6 +6,8 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     
+    printf("n"); //To make comparing changes in output easier
+
     //Create object
     CHuman person(45, 97.0, 1.9);
     //CHuman person = CHuman(45, 97.0, 1.9); //Designated initialiser (alternative method)

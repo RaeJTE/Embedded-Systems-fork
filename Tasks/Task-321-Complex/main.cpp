@@ -22,6 +22,18 @@ int main()
     }
     //test is now out of scope and should be destroyed
 
+    c1.negate();            //Negate c1
+    c1.display();
+    c3 = c1.negated();      //c3 equals negative of c1 which equals c1 as it was last displayed
+    c3.display();
+    c2.subtract(c1);
+    c2.display();
+    c1 = c3.subtractFrom(c2);
+    c1.display();
+    
+
+
+
     while (true);
 }
 

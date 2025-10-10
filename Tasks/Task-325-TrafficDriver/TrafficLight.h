@@ -12,6 +12,7 @@ class TrafficLight
 {
     public:
     typedef enum {STOP, READY, GO, WARNING} LIGHT_STATE;
+    typedef std::chrono::microseconds FLASH_SPEED;
 
     private:
     DigitalOut redLED;
@@ -19,6 +20,7 @@ class TrafficLight
     DigitalOut greenLED;
     Ticker t;
     LIGHT_STATE State;
+    FLASH_SPEED flashSpeed = 200ms;
 
     void yellowFlashISR();
     void flashYellow(bool flash);
@@ -33,6 +35,12 @@ class TrafficLight
 
     //Advance the traffic lights to the next state
     LIGHT_STATE nextState();
+
+    //Quick switch to red - overides normal order
+    void stop();
+
+    //Sets the flash speed
+    void setFlashSpeed(double);
 
 };
 

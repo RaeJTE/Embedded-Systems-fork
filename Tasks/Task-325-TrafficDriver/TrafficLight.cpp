@@ -30,7 +30,7 @@ void TrafficLight::flashYellow(bool flash) {
     t.detach(); //Turn off ticker
     if (flash) {
         //Turn on ticker ..... Hmmm, interrupts!
-        t.attach(callback(this, &TrafficLight::yellowFlashISR), 200ms);
+        t.attach(callback(this, &TrafficLight::yellowFlashISR), flashSpeed);
     }
 }
 
@@ -91,3 +91,16 @@ TrafficLight::LIGHT_STATE TrafficLight::nextState()
     //Return the current state (for information)
     return State; 
 } 
+
+void TrafficLight::stop()
+{
+    State = STOP;
+    updateOutput();
+}
+
+void TrafficLight::setFlashSpeed(double msBTWNflash)
+{
+    int time = msBTWNflash; //Not sure why, but C++ doesn't like multiplying chrono with double, but is fine to do so with int
+    flashSpeed = time*1ms;  //Converts int to chrono in ms
+    updateOutput(); //Updates output, so if already on flash instantly adjusts flash rate
+}

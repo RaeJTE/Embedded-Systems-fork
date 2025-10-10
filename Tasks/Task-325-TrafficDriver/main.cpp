@@ -8,6 +8,8 @@ TrafficLight::LIGHT_STATE s;
 
 int main()
 {
+    int n = 0;
+    printf("\n");
     while (true) {
 
         //Wait for switch press
@@ -24,6 +26,11 @@ int main()
 
         //Switch debounce
         wait_us(300000);
+        if(n>10)
+        {
+            lights.setFlashSpeed(600);
+        }
+        n++;
         
     }
 }

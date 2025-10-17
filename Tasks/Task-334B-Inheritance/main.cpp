@@ -35,7 +35,7 @@ class Flashy : DigitalOut {
         enable(false);
     }
     //OVERLOAD constructor
-    Flashy(PinName pin) : Flashy(pin, 500ms) {
+    Flashy(PinName pin) : Flashy(pin, 250ms) {
     }
     ~Flashy() {
         enable(false);
@@ -94,7 +94,7 @@ int main()
         flashRed    << false;
         flashYellow << false;
         flashGreen  << false;
-        wait_us(5000000);              //5 seconds
+        wait_us(2000000);              //5 seconds
 
         if (blueButton == 1) {
             flashGreen = 50ms;

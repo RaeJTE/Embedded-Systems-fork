@@ -86,6 +86,9 @@ public:
     {
         // Return a true if u is equal to `this`
         // ** TO BE DONE BY THE STUDENT **
+        if (u.getValue() == *this) {
+        return true;
+        }
         return false;
     }
 

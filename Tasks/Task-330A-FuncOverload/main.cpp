@@ -39,6 +39,10 @@ public:
         _real = stod(strVal);
     }
 
+    void setValue(DoubleNumber u) {
+        _real = u.getValue();
+    }
+
     double getValue() {
         return _real;
     }
@@ -52,13 +56,15 @@ public:
 int main()
 {
     //Constructor Function overloading 
-    DoubleNumber n0(1.0);
+    DoubleNumber n0;
     DoubleNumber n1;
     DoubleNumber n2;
 
     //setValue function overloading  
     n1.setValue(10);
-    n2.setValue("-3.0");
+    n2.setValue("-5.0");
+    n0.setValue(5.0);
+    n0.setValue(n1);
 
     cout << n0.getValue() + n1.getValue() + n2.getValue() << endl;
 
